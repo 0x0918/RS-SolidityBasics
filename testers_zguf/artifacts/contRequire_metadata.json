@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					}
+				],
+				"name": "mustNotBeFive",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"testers_zguf/require.sol": "contRequire"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"testers_zguf/require.sol": {
+			"keccak256": "0x2640dec29ab821aa51db5444d6435fa3909e0fae036159f1864f2ca06d6eb0be",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://d5c66406a71b9f1d7136d3f7619afa76888c3d7950c72ee49a99a4b8c4a50a88",
+				"dweb:/ipfs/QmVBtNiiKJ4yp88Yvjx1VsVq8uWtzeGcsNBPHcLJPXzk39"
+			]
+		}
+	},
+	"version": 1
+}
