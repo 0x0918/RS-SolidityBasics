@@ -1,38 +1,8 @@
 # Solidity Exercises
 
-This is a set of exercises accompanies the RareSkills [learn solidity](https://rareskills.io/learn-solidity) tutorial so you can learn Solidity by doing bite-sized exercises. It's intended for experienced programmers who want to get the the point quickly and immediately practice what they learn.
+This is a set of exercises forked from the RareSkills [tutorial](https://rareskills.io/learn-solidity) to learn Solidity by doing bite-sized exercises.
+The solutions can be found in the corresponding `/src` folder.
 
-## Installation
+If you want the clean version (without solutions) you can clone the original repository:
 
-Install foundry
-
-```
-curl -L https://foundry.paradigm.xyz | bash
-```
-
-Clone this repository
-
-```
-git clone https://github.com/rareSkills/solidity-exercises.git
-```
-
-Complete the exercises in order and test with
-
-```
-cd <Problem Name>
-forge test -vvv
-```
-
-for example, in the Add/ directory, open `src/Add.sol` and change the code so it compiles. The solution is
-
-```solidity
-    function add(uint256 a, uint256 b) public pure returns (uint256) {
-        return a + b;
-    }
-```
-
-Save your changes, then, in the same directory, test it with
-
-```
-forge test -vvv
-```
+https://github.com/RareSkills/Solidity-Exercises.git
