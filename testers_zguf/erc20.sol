@@ -23,8 +23,8 @@ contract ERC20 {
 		owner = msg.sender; 											   // Creator of the contract becomes owner
 	}
 
-	// Mint new tokens to owner's adress (to)
-	function mint(address to, uint256 amount) public {
+	// Mint new tokens to owner's adress
+	function mint(uint256 amount) public {
 		require(msg.sender == owner, "only owner can create tokens ;(");   // Checks if contract caller is owner
 		require(totalSupply + amount <= 1000000 * 10**decimals, "can't mint more tokens bahhh"); // Limit number of tokens to mint
 		totalSupply += amount;											   // Updates total supply (minted tokens)
