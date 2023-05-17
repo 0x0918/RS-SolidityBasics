@@ -64,7 +64,7 @@ contract RareCoin_ERC20 {
 	string public symbol;
 
 	SkillsCoin_ERC20 public skad;
-	
+
 	mapping(address => uint256) public REC_balanceOf;
 	address public owner;
 	address public source;
