@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.13;
 
-contract SkillsCoin_ERC20 {
+contract RareCoin_ERC20 {
 	string public name;
 	string public symbol;
 
@@ -14,16 +14,15 @@ contract SkillsCoin_ERC20 {
 	mapping(address => mapping(address => uint256)) public allowance;
 
 	constructor() {
-		name = "SkillsCoin";
-		symbol = "SKC";
+		name = "RareCoin";
+		symbol = "REC";
 		decimals = 18;
 		owner = msg.sender;
 	}
 
-	function mint(address to, uint256 amount) public {
-		require(msg.sender == owner, "only the boss can mint");
+	function mint(uint256 amount) public {
 		totalSupply += amount;
-		balanceOf[to] += amount;
+		balanceOf[msg.sender] += amount;
 	}
 
 	function transfer(address to, uint256 amount) public returns (bool) {
