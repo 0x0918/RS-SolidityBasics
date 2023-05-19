@@ -63,7 +63,7 @@ contract RareCoin_ERC20 {
 	string public name;
 	string public symbol;
 
-	SkillsCoin_ERC20 public SCcont;
+	SkillsCoin_ERC20 public skad;
 
 	mapping(address => uint256) public REC_balanceOf;
 	address public owner;
@@ -74,13 +74,12 @@ contract RareCoin_ERC20 {
 
 	mapping(address => mapping(address => uint256)) public REC_allowance;
 
-	constructor() {
+	constructor(address _address) {
 		name = "RareCoin";
 		symbol = "REC";
 		decimals = 18;
 		owner = msg.sender;
-		SCcont = new SkillsCoin_ERC20();
-		source = address(SCcont);
+		source = SkillsCoin_ERC20(_address).passAddress();
 	}
 
 	/* function getAddress(address source) public returns (address) {
