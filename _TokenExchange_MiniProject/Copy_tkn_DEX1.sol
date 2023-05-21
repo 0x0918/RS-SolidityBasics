@@ -79,6 +79,7 @@ contract RareCoin_ERC20 {
 		symbol = "REC";
 		decimals = 18;
 		owner = msg.sender;
+		SCcont = new SkillsCoin_ERC20();
 		source = address(SCcont);
 	}
 
