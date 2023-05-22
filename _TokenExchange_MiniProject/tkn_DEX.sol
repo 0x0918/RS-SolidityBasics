@@ -83,11 +83,11 @@ contract RareCoin_ERC20 {
 	function trade(uint256 amount) public {
 		(bool ok1, bytes memory r_approve) = source.call(abi.encodeWithSignature("approve(address,uint256)", address(this), amount));
 		require(ok1, "not approved");
-		//(bool ok2, bytes memory r_transfer) = source.call(abi.encodeWithSignature("transferFrom(address,address,uint256)", msg.sender, address(this), amount));
-		//require(ok2, "not transfered");
+		(bool ok2, bytes memory r_transfer) = source.call(abi.encodeWithSignature("transferFrom(address,address,uint256)", msg.sender, address(this), amount));
+		require(ok2, "not transfered");
 
 		abi.decode(r_approve, (bool));
-		//abi.decode(r_transfer, (bool));
+		abi.decode(r_transfer, (bool));
 
 		totalSupply += amount;
 		balanceOf[msg.sender] += amount;
