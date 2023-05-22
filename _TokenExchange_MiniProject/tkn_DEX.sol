@@ -5,13 +5,13 @@ contract SkillsCoin_ERC20 {
 	string public name;
 	string public symbol;
 
-	mapping(address => uint256) public SKC_balanceOf;
+	mapping(address => uint256) public balanceOf;
 	address public owner;
 	uint8 public decimals;
 
-	uint256 public SKC_totalSupply;
+	uint256 public totalSupply;
 
-	mapping(address => mapping(address => uint256)) public SKC_allowance;
+	mapping(address => mapping(address => uint256)) public allowance;
 
 	constructor() {
 		name = "SkillsCoin";
@@ -25,8 +25,8 @@ contract SkillsCoin_ERC20 {
 	}
 
 	function mint(uint256 amount) public {
-		SKC_totalSupply += amount;
-		SKC_balanceOf[msg.sender] += amount;
+		totalSupply += amount;
+		balanceOf[msg.sender] += amount;
 	}
 
 	function transfer(address to, uint256 amount) public returns (bool) {
@@ -34,26 +34,26 @@ contract SkillsCoin_ERC20 {
 	}
 
 	function approve(address spender, uint256 amount) public returns (bool) {
-		SKC_allowance[msg.sender][spender] = amount;
+		allowance[msg.sender][spender] = amount;
 
 		return true;
 	}
 
 	function transferFrom(address from, address to, uint256 amount) public returns (bool) {
 		if(msg.sender != from) {
-			require(SKC_allowance[from][msg.sender] >= amount, "not enough allowance bitch");
+			require(allowance[from][msg.sender] >= amount, "not enough allowance bitch");
 
-			SKC_allowance[from][msg.sender] -= amount;
+			allowance[from][msg.sender] -= amount;
 		}
 
 		return helperTransfer(from, to, amount);
 	}
 
 	function helperTransfer(address from, address to, uint256 amount) internal returns (bool) {
-		require(SKC_balanceOf[from] >= amount, "not enough tokens bitch");
+		require(balanceOf[from] >= amount, "not enough tokens bitch");
 		require(to != address(0), "cannot send to address(0)");
-		SKC_balanceOf[from] -= amount;
-		SKC_balanceOf[to] += amount;
+		balanceOf[from] -= amount;
+		balanceOf[to] += amount;
 
 		return true;
 	}
@@ -63,36 +63,34 @@ contract RareCoin_ERC20 {
 	string public name;
 	string public symbol;
 
-	SkillsCoin_ERC20 public SCcont;
-
-	mapping(address => uint256) public REC_balanceOf;
+	mapping(address => uint256) public balanceOf;
 	address public owner;
 	address public source;
 	uint8 public decimals;
 	
-	uint256 public REC_totalSupply;
+	uint256 public totalSupply;
 
-	mapping(address => mapping(address => uint256)) public REC_allowance;
+	mapping(address => mapping(address => uint256)) public allowance;
 
-	constructor() {
+	constructor(address _address) {
 		name = "RareCoin";
 		symbol = "REC";
 		decimals = 18;
 		owner = msg.sender;
-		source = address(SCcont);
+		source = _address;
 	}
 
-	/* function getAddress(address source) public returns (address) {
-		(bool ok, bytes memory address1) = source.call(abi.encodeWithSignature("passAddress()"));
-		require(ok, "call failed");
+	function trade(uint256 amount) public {
+		(bool ok1, bytes memory r_approve) = source.call(abi.encodeWithSignature("approve(address,uint256)", address(this), amount));
+		require(ok1, "not approved");
+		//(bool ok2, bytes memory r_transfer) = source.call(abi.encodeWithSignature("transferFrom(address,address,uint256)", msg.sender, address(this), amount));
+		//require(ok2, "not transfered");
 
-		address a1 = abi.decode(address1, (address));
-		return a1;
-	}*/
+		abi.decode(r_approve, (bool));
+		//abi.decode(r_transfer, (bool));
 
-	function mint(uint256 amount) public {
-		REC_totalSupply += amount;
-		REC_balanceOf[msg.sender] += amount;
+		totalSupply += amount;
+		balanceOf[msg.sender] += amount;
 	}
 
 	function transfer(address to, uint256 amount) public returns (bool) {
@@ -100,26 +98,26 @@ contract RareCoin_ERC20 {
 	}
 
 	function approve(address spender, uint256 amount) public returns (bool) {
-		REC_allowance[msg.sender][spender] = amount;
+		allowance[msg.sender][spender] = amount;
 
 		return true;
 	}
 
 	function transferFrom(address from, address to, uint256 amount) public returns (bool) {
 		if(msg.sender != from) {
-			require(REC_allowance[from][msg.sender] >= amount, "not enough allowance bitch");
+			require(allowance[from][msg.sender] >= amount, "not enough allowance bitch");
 
-			REC_allowance[from][msg.sender] -= amount;
+			allowance[from][msg.sender] -= amount;
 		}
 
 		return helperTransfer(from, to, amount);
 	}
 
 	function helperTransfer(address from, address to, uint256 amount) internal returns (bool) {
-		require(REC_balanceOf[from] >= amount, "not enough tokens bitch");
+		require(balanceOf[from] >= amount, "not enough tokens bitch");
 		require(to != address(0), "cannot send to address(0)");
-		REC_balanceOf[from] -= amount;
-		REC_balanceOf[to] += amount;
+		balanceOf[from] -= amount;
+		balanceOf[to] += amount;
 
 		return true;
 	}
