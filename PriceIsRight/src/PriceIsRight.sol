@@ -4,7 +4,6 @@ pragma solidity ^0.8.13;
 contract PriceIsRight {
     /// @dev make this function revert unless exactly 1 ether is sent as value in the function call
     function buy() public payable {
-        uint256 amount = {value: amount};
-        (bool, ok ) = {value: amount}
+        require(address(this).balance == 1 ether);
     }
 }
