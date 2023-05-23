@@ -16,7 +16,8 @@ contract ForwardMoney {
 
 	function sendMoney(address luckyAdress) public payable {
 		uint256 myBalance = viewBalance();
-		luckyAdress.call{value: myBalance}("");
+		(bool ok, ) = luckyAdress.call{value: myBalance}("");
+		require(ok);
 	}
 
 	function viewBalance() public view returns (uint256) {

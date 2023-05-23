@@ -5,7 +5,8 @@ contract SaveMoney {
 
 	function withdrawMoney() public payable {
 		require(msg.sender == 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, "not the first remix address");
-		msg.sender.call{value: viewBalance()}("");
+		(bool ok, ) = msg.sender.call{value: viewBalance()}("");
+		require(ok);
 	}
 
 	function viewBalance() public view returns (uint256) {
