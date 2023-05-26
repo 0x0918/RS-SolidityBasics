@@ -12,12 +12,21 @@ contract ReducingPayout {
 
     // The time 1 ether was sent to this contract
     uint256 public immutable depositedTime;
+	uint256 public timeDif;
+	uint256 public withdrawValue;
+	uint256 public percentage;
 
     constructor() payable {
         depositedTime = block.timestamp;
     }
 
     function withdraw() public {
-        // your code here
+		timeDif = block.timestamp - depositedTime;
+		if (timeDif >= 86400)
+			withdrawValue = 0;
+		else
+			withdrawValue = 1 ether - ((timeDif * 0.0011574 ether) / 100);
+        (bool ok, ) = msg.sender.call{value: withdrawValue}("");
+		require(ok);
     }
 }
